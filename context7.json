@@ -1,0 +1,39 @@
+{
+  "projectTitle": "MSPM0G3507 SDK",
+  "description": "A lightweight SDK and documentation package for TI MSPM0G3507 microcontrollers, including DriverLib sources, RTOS integration files, device notes, and LQFP-48/LQFP-64 pin mapping documentation.",
+  "folders": [
+    {
+      "path": "doc",
+      "description": "Device notes, package pin mapping documents, datasheet, and user manual."
+    },
+    {
+      "path": "include",
+      "description": "Public headers for CMSIS, TI DriverLib, TI Drivers, ZF wrappers, and RTOS integration."
+    },
+    {
+      "path": "source",
+      "description": "Source files for startup, TI DriverLib, TI Drivers, ZF wrappers, and RTOS components."
+    }
+  ],
+  "excludeFolders": [
+    ".git",
+    ".vscode",
+    ".idea",
+    "Debug",
+    "Release",
+    "Objects",
+    "Listings",
+    "build",
+    "cmake-build-debug",
+    "cmake-build-release",
+    "node_modules"
+  ],
+  "rules": [
+    "Treat .syscfg files as the source of truth for generated MSPM0 pin, clock, interrupt, and peripheral configuration when present.",
+    "Prefer TI DriverLib and local wrapper APIs over ad hoc register access in examples and explanations.",
+    "Use include/ for public interfaces and source/ for implementation details; keep paired headers and sources consistent.",
+    "Use doc/MSPM0G3507 LQFP-48 引脚功能表.md and doc/MSPM0G3507 LQFP-64 引脚功能表.md for package-specific pin mapping notes.",
+    "Do not treat generated build outputs, object files, map files, binaries, IDE metadata, or version-control metadata as source documentation.",
+    "When summarizing C/C++ APIs, preserve exact macro names, function names, interrupt names, and device identifiers."
+  ]
+}
