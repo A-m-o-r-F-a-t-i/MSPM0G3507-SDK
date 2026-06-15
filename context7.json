@@ -1,19 +1,14 @@
 {
+  "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "MSPM0G3507 SDK",
   "description": "A lightweight SDK and documentation package for TI MSPM0G3507 microcontrollers, including DriverLib sources, RTOS integration files, device notes, and LQFP-48/LQFP-64 pin mapping documentation.",
   "folders": [
-    {
-      "path": "doc",
-      "description": "Device notes, package pin mapping documents, datasheet, and user manual."
-    },
-    {
-      "path": "include",
-      "description": "Public headers for CMSIS, TI DriverLib, TI Drivers, ZF wrappers, and RTOS integration."
-    },
-    {
-      "path": "source",
-      "description": "Source files for startup, TI DriverLib, TI Drivers, ZF wrappers, and RTOS components."
-    }
+    "doc",
+    "include/core/ti/driverlib",
+    "include/core/zf",
+    "include/rtos",
+    "source/core/zf",
+    "source/rtos"
   ],
   "excludeFolders": [
     ".git",
@@ -26,7 +21,14 @@
     "build",
     "cmake-build-debug",
     "cmake-build-release",
-    "node_modules"
+    "node_modules",
+    "include/core/third_party",
+    "include/core/ti/drivers/lib",
+    "source/core/ti/drivers/lib"
+  ],
+  "excludeFiles": [
+    "mspm0g3507数据手册.pdf",
+    "mspm0g3507用户手册.pdf"
   ],
   "rules": [
     "Treat .syscfg files as the source of truth for generated MSPM0 pin, clock, interrupt, and peripheral configuration when present.",
