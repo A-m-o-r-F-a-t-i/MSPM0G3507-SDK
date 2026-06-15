@@ -1,0 +1,74 @@
+# MSPM0G3507 LQFP-48
+
+## 一、 核心专用引脚速查 (Power, Debug, Clock, Reset)
+
+| 功能分类 | 引脚号 | 引脚名称 | 备注说明 |
+| :--- | :--- | :--- | :--- |
+| **电源与地** | 6 | VDD | 系统数字电源 (3.3V/5V) |
+| | 7 | VSS | 系统电源地 (GND) |
+| | 48 | VCORE | 内核电压电容引脚 (需外接电容到地) |
+| **复位** | 4 | NRST | 系统硬件复位引脚 (低电平有效) |
+| **烧录/调试**| 34 | PA19 | SWDIO (串行调试数据) |
+| | 35 | PA20 | SWCLK (串行调试时钟) |
+| **外部晶振** | 8 | PA2 | ROSC (外部电阻振荡器) |
+| | 9, 10 | PA3, PA4 | LFXIN, LFXOUT (低频晶振 32.768kHz) |
+| | 11, 12 | PA5, PA6 | HFXIN, HFXOUT (高频晶振) |
+
+---
+
+## 二、 完整 48 组引脚功能复用表
+
+> **阅读提示：** 
+> * **模拟功能**：包括 ADC输入(A0_x/A1_x)、运放(OPA)、比较器(COMP)、基准电压(VREF)等。
+> * **数字功能**：已省略数据手册中的 `[数字]` 多路复用选择序号，多个外设功能用逗号分隔，
+
+| 引脚号 | 端口名 | 模拟 / 专用输入输出功能 | 主要数字复用功能 (UART / SPI / I2C / Timer / CAN) |
+| :---: | :---: | :--- | :--- |
+| **1** | **PA0** | - | UART0_TX, I2C0_SDA, TIMA0_C0, TIMA_FAL1, TIMG8_C1, FCC_IN |
+| **2** | **PA1** | - | UART0_RX, I2C0_SCL, TIMA0_C1, TIMA_FAL2, TIMG8_IDX, TIMG8_C0 |
+| **3** | **PA28** | - | UART0_TX, I2C0_SDA, TIMA0_C3, TIMA_FAL0, TIMG7_C0, TIMA1_C0 |
+| **4** | **NRST** | 硬件复位引脚 | - |
+| **5** | **PA31** | - | UART0_RX, I2C0_SCL, TIMA0_C3N, TIMG12_C1, CLK_OUT, TIMG7_C1, TIMA1_C1 |
+| **6** | **VDD** | 芯片电源正极 | - |
+| **7** | **VSS** | 芯片电源地 | - |
+| **8** | **PA2** | ROSC | TIMG8_C1, SPI0_CS0, TIMG7_C1, SPI1_CS0 |
+| **9** | **PA3** | LFXIN | TIMG8_C0, SPI0_CS1, UART2_CTS, TIMA0_C2, COMP1_OUT, TIMG7_C0, TIMA0_C1, I2C1_SDA |
+| **10** | **PA4** | LFXOUT | TIMG8_C1, SPI0_POCI, UART2_RTS, TIMA0_C3, LFCLK_IN, TIMG7_C1, TIMA0_C1N, I2C1_SCL |
+| **11** | **PA5** | HFXIN | TIMG8_C0, SPI0_PICO, TIMA_FAL1, TIMG0_C0, TIMG6_C0, FCC_IN (可作BSL调用) |
+| **12** | **PA6** | HFXOUT | TIMG8_C1, SPI0_SCK, TIMA_FAL0, TIMG0_C1, HFCLK_IN, TIMG6_C1, TIMA0_C2N |
+| **13** | **PA7** | - | COMP0_OUT, CLK_OUT, TIMG8_C0, TIMA0_C2, TIMG8_IDX, TIMG7_C1, TIMA0_C1 |
+| **14** | **PB2** | - | UART3_TX, UART2_CTS, I2C1_SCL, TIMA0_C3, UART1_CTS, TIMG6_C0, TIMA1_C0 |
+| **15** | **PB3** | - | UART3_RX, UART2_RTS, I2C1_SDA, TIMA0_C3N, UART1_RTS, TIMG6_C1, TIMA1_C1 |
+| **16** | **PA8** | - | UART1_TX, SPI0_CS0, UART0_RTS, TIMA0_C0, TIMA1_C0N |
+| **17** | **PA9** | - | UART1_RX, SPI0_PICO, UART0_CTS, TIMA0_C1, RTC_OUT, TIMA0_C0N, TIMA1_C1N, CLK_OUT |
+| **18** | **PA10** | - | UART0_TX, SPI0_POCI, I2C0_SDA, TIMA1_C0, TIMG12_C0, TIMA0_C2, I2C1_SDA, CLK_OUT |
+| **19** | **PA11** | - | UART0_RX, SPI0_SCK, I2C0_SCL, TIMA1_C1, COMP0_OUT, TIMA0_C2N, I2C1_SCL |
+| **20** | **PB6** | - | UART1_TX, SPI1_CS0, UART2_RTS, TIMG8_C0, UART2_CTS, TIMG6_C0, TIMA1_C0N |
+| **21** | **PB7** | - | UART1_RX, SPI1_POCI, SPI0_CS2, TIMG8_C1, UART2_RTS, TIMG6_C1, TIMA1_C1N |
+| **22** | **PB8** | - | UART1_CTS, SPI1_PICO, TIMA0_C0, COMP1_OUT |
+| **23** | **PB9** | - | UART1_RTS, SPI1_SCK, TIMA0_C1, TIMA0_C0N |
+| **24** | **PB14** | - | SPI1_CS3, SPI1_POCI, SPI0_CS3, TIMG12_C1, TIMG8_IDX, TIMA0_C0 |
+| **25** | **PB15** | - | UART2_TX, SPI1_PICO, UART3_CTS, TIMG8_C0, TIMG7_C0 |
+| **26** | **PB16** | - | UART2_RX, SPI1_SCK, UART3_RTS, TIMG8_C1, TIMG7_C1 |
+| **27** | **PA12** | - | UART3_CTS, SPI0_SCK, TIMG0_C0, CAN_TX, TIMA0_C3, FCC_IN |
+| **28** | **PA13** | COMP0_IN2- | UART3_RTS, SPI0_POCI, UART3_RX, TIMG0_C1, CAN_RX, TIMA0_C3N |
+| **29** | **PA14** | COMP0_IN2+, A0_12 | UART0_CTS, SPI0_PICO, UART3_TX, TIMG12_C0, CLK_OUT |
+| **30** | **PA15** | A1_0, DAC_OUT, OPA0_IN2+, OPA1_IN2+, COMP0/1_IN3+ | UART0_RTS, SPI1_CS2, I2C1_SCL, TIMA1_C0, TIMG8_IDX, TIMA1_C0N, TIMA0_C2 |
+| **31** | **PA16** | A1_1, OPA1_OUT | COMP2_OUT, SPI1_POCI, I2C1_SDA, TIMA1_C1, TIMA1_C1N, TIMA0_C2N, FCC_IN |
+| **32** | **PA17** | A1_2, OPA1_IN1-, COMP0_IN1- | UART1_TX, SPI1_SCK, I2C1_SCL, TIMA0_C3, TIMG7_C0, TIMA1_C0 |
+| **33** | **PA18** | A1_3, OPA1_IN1+, COMP0_IN1+, GPAMP_IN- | UART1_RX, SPI1_PICO, I2C1_SDA, TIMA0_C3N, TIMG7_C1, TIMA1_C1 |
+| **34** | **PA19** | - | **SWDIO** (串行调试引脚) |
+| **35** | **PA20** | - | **SWCLK** (串行调试引脚) |
+| **36** | **PB17** | A1_4, COMP1_IN2- | UART2_TX, SPI0_PICO, SPI1_CS1, TIMA1_C0, TIMA0_C2 |
+| **37** | **PB18** | A1_5, COMP1_IN2+ | UART2_RX, SPI0_SCK, SPI1_CS2, TIMA1_C1, TIMA0_C2N |
+| **38** | **PB19** | A1_6, COMP2_IN1+, OPA1_IN0+ | COMP2_OUT, SPI0_POCI, TIMG8_C1, UART0_CTS, TIMG7_C1 |
+| **39** | **PA21** | A1_7, COMP2_IN1-, VREF- | UART2_TX, TIMG8_C0, UART1_CTS, TIMA0_C0, TIMG6_C0 |
+| **40** | **PA22** | A0_7, GPAMP_OUT, OPA0_OUT | UART2_RX, TIMG8_C1, UART1_RTS, TIMA0_C1, CLK_OUT, TIMA0_C0N, TIMG6_C1 |
+| **41** | **PB20** | A0_6, OPA1_IN0- | SPI0_CS2, SPI1_CS0, TIMA0_C2, TIMG12_C0, TIMA_FAL1, TIMA0_C1, TIMA1_C1N |
+| **42** | **PB24** | A0_5, COMP1_IN1+ | SPI0_CS3, SPI0_CS1, TIMA0_C3, TIMG12_C1, TIMA0_C1N, TIMA1_C0N |
+| **43** | **PA23** | COMP1_IN1-, VREF+ | UART2_TX, SPI1_CS0, TIMA0_C2, TIMG0_C0, UART3_CTS, TIMG7_C0, TIMG8_C0 |
+| **44** | **PA24** | A0_3, OPA0_IN1- | UART2_RX, SPI0_CS2, TIMA0_C3N, TIMG0_C1, UART3_RTS, TIMG7_C1, TIMA1_C1 |
+| **45** | **PA25** | A0_2, OPA0_IN1+ | UART3_RX, SPI1_CS3, TIMG12_C1, TIMA0_C3, TIMA0_C1N |
+| **46** | **PA26** | A0_1, COMP0_IN0+, OPA0_IN0+, GPAMP_IN+ | UART3_TX, SPI1_CS0, TIMG8_C0, TIMA_FAL0, **CAN_TX**, TIMG7_C0 |
+| **47** | **PA27** | A0_0, COMP0_IN0-, OPA0_IN0- | RTC_OUT, SPI1_CS1, TIMG8_C1, TIMA_FAL2, **CAN_RX**, TIMG7_C1 |
+| **48** | **VCORE**| 内部LDO稳压输出引脚 | - |
