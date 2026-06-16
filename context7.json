@@ -1,14 +1,25 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "MSPM0G3507 SDK",
-  "description": "A lightweight SDK and documentation package for TI MSPM0G3507 microcontrollers, including DriverLib sources, RTOS integration files, device notes, and LQFP-48/LQFP-64 pin mapping documentation.",
+  "description": "Lightweight firmware package for TI MSPM0G3507 development, including device documentation, DriverLib, TI Drivers, FreeRTOS files, SysConfig-based TI examples, and ZF wrapper examples.",
   "folders": [
     "doc",
+    "include/core/ti/devices",
     "include/core/ti/driverlib",
+    "include/core/ti/drivers",
     "include/core/zf",
     "include/rtos",
+    "source/core/ti/driverlib",
+    "source/core/ti/drivers",
     "source/core/zf",
-    "source/rtos"
+    "source/rtos",
+    "TI_examples/nortos/driverlib",
+    "TI_examples/nortos/drivers",
+    "TI_examples/nortos/empty_mspm0g3507",
+    "TI_examples/rtos/drivers",
+    "TI_examples/rtos/kernel",
+    "ZF_examples/Coreboard_Demo",
+    "ZF_examples/Motherboard_Demo"
   ],
   "excludeFolders": [
     ".git",
@@ -24,18 +35,43 @@
     "node_modules",
     "include/core/third_party",
     "include/core/ti/drivers/lib",
-    "source/core/ti/drivers/lib"
+    "source/core/ti/drivers/lib",
+    "DebugConfig",
+    "sysconfig_output",
+    "Release_FLASH",
+    "Debug_FLASH",
+    "settings",
+    ".settings"
   ],
   "excludeFiles": [
     "mspm0g3507数据手册.pdf",
-    "mspm0g3507用户手册.pdf"
+    "mspm0g3507用户手册.pdf",
+    "*.html",
+    "*.log",
+    "*.obj",
+    "*.o",
+    "*.out",
+    "*.map",
+    "*.bin",
+    "*.hex",
+    "*.axf",
+    "*.elf",
+    "*.uvguix.*",
+    "*.uvoptx",
+    "*.ewt",
+    "*.ewd",
+    "*.dep",
+    "*.bak"
   ],
   "rules": [
     "Treat .syscfg files as the source of truth for generated MSPM0 pin, clock, interrupt, and peripheral configuration when present.",
-    "Prefer TI DriverLib and local wrapper APIs over ad hoc register access in examples and explanations.",
+    "Use generated ti_msp_dl_config.h macro names exactly as written; do not invent GPIO, clock, IRQ, timer, UART, SPI, I2C, ADC, or DMA symbols.",
+    "Prefer TI DriverLib, TI Drivers, and local ZF wrapper APIs over ad hoc register access in examples and explanations.",
     "Use include/ for public interfaces and source/ for implementation details; keep paired headers and sources consistent.",
     "Use doc/MSPM0G3507 LQFP-48 引脚功能表.md and doc/MSPM0G3507 LQFP-64 引脚功能表.md for package-specific pin mapping notes.",
+    "Use TI_examples for LP-MSPM0G3507 SysConfig and DriverLib reference patterns, and use ZF_examples for ZF board wrapper usage patterns.",
     "Do not treat generated build outputs, object files, map files, binaries, IDE metadata, or version-control metadata as source documentation.",
-    "When summarizing C/C++ APIs, preserve exact macro names, function names, interrupt names, and device identifiers."
+    "When summarizing C/C++ APIs, preserve exact macro names, function names, interrupt names, device identifiers, and package names.",
+    "For embedded C edits, keep ISR work short, avoid unnecessary RAM use, and keep configuration constants in headers or SysConfig."
   ]
 }
